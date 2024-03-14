@@ -1,5 +1,6 @@
 name: workflow
-on: 
+
+on:
   push:
     branches:
       - main
@@ -7,12 +8,12 @@ on:
       - "README.md"
 
 permissions:
-  id-token: read
-  contents : write
+  id-token: write
+  contents: read
 
 jobs:
-  integration: 
-    name: Continuous Integration
+  integration:
+    name: :Continues Integration
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -27,9 +28,12 @@ jobs:
 
       - name: Run unit tests
         run: echo "Running unit tests"
-  
-  push-to-registry:
-    name: Push to Docker Image to Hub
+      
+
+
+
+  push_to_registry:
+    name: Push Docker image to Docker hub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout out the repo
@@ -57,6 +61,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+
 
   Continuous-Deployment:
     needs: push_to_registry
@@ -87,3 +93,6 @@ jobs:
       - name: Clean previous images and containers
         run: |
          docker system prune -f
+      
+
+    
