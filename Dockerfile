@@ -23,7 +23,7 @@ RUN pip install bentoml==1.0.25 \
 
 
 
-RUN pip3 install -r requirements.txt
+
 
 EXPOSE 8501
 
