@@ -16,7 +16,7 @@ class DataIngestion:
         try:
             logging.info("Entered the get_data_from_s3 method of DataIngestion class")
 
-            self.s3_operation.sync_folder_from_s3(folder= self.data_ingestion_config.data_path, bucket_name = self.data_ingestion_config.s3_bucket_name,
+            self.s3_operation.sync_folder_from_s3(folder= self.data_ingestion_config.data_path, bucket_name = self.data_ingestion_config.bucket_name,
             bucket_folder_name = self.data_ingestion_config.s3_data_folder)
 
             logging.info("Exited the get_data_from_s3 method of DataIngestion class")

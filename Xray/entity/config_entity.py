@@ -3,14 +3,18 @@ from dataclasses import dataclass
 from torch import device
 from Xray.constant.training_pipeline import *
 
+
+
+
 @dataclass
 class DataIngestionConfig:
     def __init__(self):
-        
         self.s3_data_folder: str = S3_DATA_FOLDER
-        self.s3_bucket_name: str = BUCKET_NAME
-        self.artifact_dir: str = os.path.join(ARTIFACT_DIR,TIMESTAMP)
-       
+
+        self.bucket_name: str = BUCKET_NAME
+
+        self.artifact_dir: str = os.path.join(ARTIFACT_DIR, TIMESTAMP)
+
         self.data_path: str = os.path.join(
             self.artifact_dir, "data_ingestion", self.s3_data_folder
         )
@@ -18,6 +22,7 @@ class DataIngestionConfig:
         self.train_data_path: str = os.path.join(self.data_path, "train")
 
         self.test_data_path: str = os.path.join(self.data_path, "test")
+
 
 @dataclass
 class DataTransformationConfig:
@@ -57,7 +62,10 @@ class DataTransformationConfig:
         self.test_transforms_file: str = os.path.join(
             self.artifact_dir, TEST_TRANSFORMS_FILE
         )
-    
+
+
+
+
 @dataclass
 class ModelTrainerConfig:
     def __init__(self):
@@ -78,3 +86,36 @@ class ModelTrainerConfig:
         self.scheduler_params: dict = {"step_size": STEP_SIZE, "gamma": GAMMA}
 
         self.device: device = DEVICE
+
+
+
+
+@dataclass
+class ModelEvaluationConfig:
+    def __init__(self):
+        self.device: device = DEVICE
+
+        self.test_loss: int = 0
+
+        self.test_accuracy: int = 0
+
+        self.total: int = 0
+
+        self.total_batch: int = 0
+
+        self.optimizer_params: dict = {"lr": 0.01, "momentum": 0.8}
+
+
+
+
+# Model Pusher Configurations
+@dataclass
+class ModelPusherConfig:
+    def __init__(self):
+        self.bentoml_model_name: str = BENTOML_MODEL_NAME
+
+        self.bentoml_service_name: str = BENTOML_SERVICE_NAME
+
+        self.train_transforms_key: str = TRAIN_TRANSFORMS_KEY
+
+        self.bentoml_ecr_image: str = BENTOML_ECR_IMAGE

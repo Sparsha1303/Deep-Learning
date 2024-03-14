@@ -1,9 +1,9 @@
 import sys
-from xray.cloud_storage.s3_ops import S3Operation
+from Xray.cloud_storage.s3_ops import S3Operation
 
-from xray.entity.config_entity import ModelPusherConfig
-from xray.exception import XRayException
-from xray.logger import logging
+from Xray.entity.config_entity import ModelPusherConfig
+from Xray.exception import XRayException
+from Xray.logger import logging
 
 
 class ModelPusher:
@@ -29,7 +29,7 @@ class ModelPusher:
             self.s3.upload_file(
                 "model/model.pt",
                 "model.pt",
-                "lungxray24",
+                "deeplearingxrayimages",
                 remove=False,
             )
             logging.info("Uploaded best model to s3 bucket")
