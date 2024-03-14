@@ -4,6 +4,7 @@ FROM python:3.8-slim-buster
 
 WORKDIR /app
 COPY . /app
+ENV PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 RUN apt-get update && apt-get install -y \
     build-essential \
