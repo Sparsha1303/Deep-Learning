@@ -52,4 +52,6 @@ WORKDIR /app
 RUN pip3 install -r requirements.txt
 # Use RUN command to print the $PATH environment variable
 RUN echo $PATH
-ENTRYPOINT [ "streamlit","run","app.py","--server.port=8501","--server.address=0.0.0.0" ]
+# ENTRYPOINT [ "streamlit","run","app.py","--server.port=8501","--server.address=0.0.0.0" ]
+ENTRYPOINT ["streamlit", "run"]
+CMD ["app.py", "--server.port=8501", "--server.address=0.0.0.0"]
